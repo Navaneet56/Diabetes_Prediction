@@ -1,7 +1,7 @@
+%%writefile app_diabetes.py
 import streamlit as st
 import numpy as np
 import pickle
-import xgboost as xgb  # Explicit import to prevent ModuleNotFoundError inside pickle
 
 # Setup interface properties
 st.set_page_config(
@@ -62,19 +62,19 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-st.title("🩺 Diabetes Diagnostic AI Assistant")
-st.markdown("### Early Screening Portal using Machine Learning")
+st.title("🩺 Diabetes Diagnostic AI  Assistant")
+st.markdown("### Early Screening Portal using Machine Learning SVM")
 st.write("Fill in the patient's metrics below to run the diagnostic predictive system.")
 st.markdown("---")
 
-# Model Loader (UPDATED WITH CORRECT FILENAMES)
+# Model Loader
 try:
-    with open('diabetes_model.sav', 'rb') as f_model:
+    with open('diabetes_model.pkl', 'rb') as f_model:
         model = pickle.load(f_model)
-    with open('scaler.pkl', 'rb') as f_scaler:
+    with open('diabetes_scaler.pkl', 'rb') as f_scaler:
         scaler = pickle.load(f_scaler)
 except FileNotFoundError:
-    st.error("🚨 Configuration Error: Missing saved data. Please verify your file names on GitHub match 'diabetes_model.sav' and 'scaler.pkl'.")
+    st.error("🚨 Configuration Error: Missing saved data. Please re-run your notebook cells to save the model files.")
     st.stop()
 
 # Split Input Rows
