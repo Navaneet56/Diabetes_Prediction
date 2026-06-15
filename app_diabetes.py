@@ -70,7 +70,7 @@ st.markdown("---")
 try:
     with open('diabetes_model.pkl', 'rb') as f_model:
         model = pickle.load(f_model)
-    with open('diabetes_scaler.pkl', 'rb') as f_scaler:
+    with open('scaler.pkl', 'rb') as f_scaler:
         scaler = pickle.load(f_scaler)
 except FileNotFoundError:
     st.error("🚨 Configuration Error: Missing saved data. Please re-run your notebook cells to save the model files.")
